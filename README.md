@@ -1,6 +1,6 @@
-# RBH Design Studio — Project Zero
+# RBHU Design Studio — Project Zero
 
-Iteration 0 of the RBH Design Studio public website. The site is a static, responsive Next.js homepage built from `PROJECT_ZERO_RBH.md`.
+Iteration 0 of the RBHU Design Studio public website. The site is a static, responsive Next.js website built from `PROJECT_ZERO_RBH.md`.
 
 ## Local development
 

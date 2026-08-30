@@ -2,11 +2,11 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request("http://localhost/", { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
 test("server-renders the complete Iteration 0 homepage", async () => {
@@ -20,16 +20,28 @@ test("server-renders the complete Iteration 0 homepage", async () => {
   assert.match(html, /Concept projects/);
   assert.match(html, /Working together/);
   assert.match(html, /Start with what you need/);
-  assert.match(html, /Why RBH/);
+  assert.match(html, /Why RBHU/);
   assert.match(html, /Questions are a good start/);
   assert.match(html, /Let.s make the next step simple/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
+test("server-renders the production privacy notice", async () => {
+  const response = await render("/privacy");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Privacy without the complicated language/);
+  assert.match(html, /does not currently use a contact form/);
+  assert.match(html, /vishnugupta\.work@gmail\.com/);
+});
+
 test("keeps brand details and concept integrity explicit", async () => {
   const [page, brand] = await Promise.all([readFile(new URL("../app/page.tsx", import.meta.url), "utf8"), readFile(new URL("../config/brand.ts", import.meta.url), "utf8")]);
-  assert.match(brand, /name: "RBH Design Studio"/);
-  assert.match(brand, /whatsapp: ""/);
+  assert.match(brand, /name: "RBHU Design Studio"/);
+  assert.match(brand, /email: "vishnugupta.work@gmail.com"/);
+  assert.match(brand, /phoneHref: "tel:\+917754877389"/);
+  assert.match(brand, /whatsapp: "https:\/\/wa.me\/917754877389"/);
   assert.match(page, /These are concepts—not client work/);
   assert.doesNotMatch(page, /testimonial|award-winning|trusted by/i);
+  assert.doesNotMatch(page, /coming soon|being finalised/i);
 });

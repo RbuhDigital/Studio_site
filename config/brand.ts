@@ -1,11 +1,8 @@
 export const brand = {
-  name: "RBH Design Studio",
-  shortName: "RBH",
-  email: "",
-  whatsapp: "",
-  phone: "",
+  name: "RBHU Design Studio",
+  shortName: "RBHU",
+  email: "vishnugupta.work@gmail.com",
+  phoneDisplay: "+91 77548 77389",
+  phoneHref: "tel:+917754877389",
+  whatsapp: "https://wa.me/917754877389",
 } as const;
-
-export const contactIsConfigured = Boolean(
-  brand.email || brand.whatsapp || brand.phone,
-);

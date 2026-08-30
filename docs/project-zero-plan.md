@@ -9,11 +9,11 @@
 ## Iteration 0 implementation approach
 
 - Build one static, server-rendered homepage containing exactly the sections listed in the brief.
-- Keep the studio name and contact placeholders in `config/brand.ts`; keep repeated homepage content in `data/home.ts`.
+- Keep the studio name and configured contact channels in `config/brand.ts`; keep repeated homepage content in `data/home.ts`.
 - Use semantic page landmarks, anchor navigation, native `details` elements for the mobile menu and FAQ, visible focus states, comfortable touch targets, and reduced-motion handling.
 - Establish the provisional cream/navy/coral/mustard/mint palette, typography scale, spacing, radii, shadows, and width constraints as CSS custom properties.
 - Use CSS composition rather than image or animation dependencies for the hero artwork. Motion is limited to small hover transitions and is disabled when reduced motion is requested.
-- Keep contact actions honest: until real email and WhatsApp values are configured, CTAs link to the contact section and visibly say that details are coming soon.
+- Connect every contact action to the configured email, phone, or WhatsApp channel.
 
 ## Components and files
 
@@ -34,8 +34,8 @@
 
 ## Risks and assumptions
 
-- Brand spelling remains `RBH Design Studio` and can be changed in one configuration value.
-- Email, phone, WhatsApp, social accounts, pricing, legal details, and real client projects are intentionally unavailable. No active channel or claim will be fabricated.
+- The production brand spelling is `RBHU Design Studio` and remains editable in one configuration value.
+- Email, phone, WhatsApp, and the privacy notice are configured. Pricing and real client projects remain unavailable; no claim will be fabricated.
 - Concept cards are explicitly labelled as concepts and describe illustrative deliverables only.
 - The provisional visual system is intentionally reviewable rather than final; palette and illustration polish belong to Iteration 1.
 - Contact submission, analytics, and conversion tracking remain out of scope until Iteration 5.
