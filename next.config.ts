@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
+const isPagesBuild = process.env.PAGES_BUILD === "true";
 const pagesBasePath = process.env.PAGES_BASE_PATH ?? "";
-const isPagesBuild = Boolean(pagesBasePath);
 
 const nextConfig: NextConfig = {
   output: isPagesBuild ? "export" : undefined,
-  basePath: pagesBasePath,
+  basePath: pagesBasePath || undefined,
   assetPrefix: pagesBasePath || undefined,
   trailingSlash: isPagesBuild,
   env: {

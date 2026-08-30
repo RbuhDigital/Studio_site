@@ -52,6 +52,6 @@ npm test
 
 ## GitHub Pages deployment
 
-- `npm run build:pages` creates a static export in `out/` with the repository base path `/Studio_site`.
+- `npm run build:pages` creates a root-relative static export in `out/` for the custom domain `rbhu.digital`.
 - `.github/workflows/deploy-pages.yml` validates, builds, uploads, and deploys that export on every push to `main`; it can also be run manually.
 - Local development and the existing Sites-compatible build remain unchanged.
