@@ -49,3 +49,9 @@ npm test
 ```
 
 `npm test` includes the production build and rendered-HTML checks. Manual review targets are 320, 375, 390, 430, tablet, 1280, and 1440 pixel widths; automated browser testing is not added in Iteration 0.
+
+## GitHub Pages deployment
+
+- `npm run build:pages` creates a static export in `out/` with the repository base path `/Studio_site`.
+- `.github/workflows/deploy-pages.yml` validates, builds, uploads, and deploys that export on every push to `main`; it can also be run manually.
+- Local development and the existing Sites-compatible build remain unchanged.
